@@ -44,7 +44,7 @@ const App = () => {
     return true;
   };
   const changeFilter = e => {
-    setFilter({ filter: e.target.value });
+    setFilter(e.target.value);
   };
 
   const filtredContacts = () => {
@@ -55,11 +55,9 @@ const App = () => {
     );
   };
   const deleteContact = contactId => {
-    setContacts(prevContacts => ({
-      contacts: prevContacts.contacts.filter(
-        contact => contact.id !== contactId
-      ),
-    }));
+    setContacts(prevContacts =>
+      prevContacts.filter(contact => contact.id !== contactId)
+    );
   };
   return (
     <div className="App">

@@ -27,10 +27,9 @@ const FormPhoneBook = ({ onSubmit }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (onSubmit(name, number)) {
-      setName('');
-      setNumber('');
-    }
+    onSubmit(name, number);
+    setName('');
+    setNumber('');
   };
   return (
     <form onSubmit={handleSubmit} className={Style.form}>

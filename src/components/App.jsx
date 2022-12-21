@@ -26,20 +26,21 @@ const App = () => {
   // useEffect(() => {
   //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, []);
-  const formContactChange = data => {
-    if (contacts.find(({ name }) => name === data.name)) {
-      alert(`${data.name} is already in contacts.`);
+  const formContactChange = (name, number) => {
+    const newContact = {
+      id: uuidv4(),
+      name,
+      number,
+    };
+
+    if (contacts.find(contact => contact.name === name)) {
+      alert(`${name} is already in contacts.`);
       return false;
-    } else if (contacts.find(({ number }) => number === data.number)) {
-      alert(`${data.number} is already in contacts.`);
+    } else if (contacts.find(contact => contact.number === number)) {
+      alert(`${number} is already in contacts.`);
       return false;
     }
 
-    const newContact = {
-      id: uuidv4(),
-      name: data.name,
-      number: data.number,
-    };
     setContacts(prevContacts => [newContact, ...prevContacts]);
     return true;
   };
@@ -49,7 +50,6 @@ const App = () => {
 
   const filtredContacts = () => {
     const normalizedFilter = filter.toLowerCase();
-
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
